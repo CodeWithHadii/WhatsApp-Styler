@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Styler - Formatação Elegante</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="editor-container">
+        <h1>WhatsApp Styler</h1>
+        <h2>Formatação Elegante para Suas Mensagens</h2>
+        <!-- Resto do conteúdo permanece o mesmo -->
+        <div class="toolbar">
+            <button id="boldBtn" class="format-btn"><b>B</b></button>
+            <button id="italicBtn" class="format-btn"><i>I</i></button>
+            <button id="strikeBtn" class="format-btn"><s>S</s></button>
+            <button id="monoBtn" class="format-btn"><span class="mono">Mono</span></button>
+            <button id="listBtn" class="format-btn">Lista</button>
+            <button id="numberedListBtn" class="format-btn">Lista Numerada</button>
+        </div>
+        <textarea id="textInput" placeholder="Digite ou cole seu texto aqui..."></textarea>
+        <div class="output-container">
+            <h3>Pré-visualização:</h3>
+            <div id="output"></div>
+        </div>
+        <button id="copyBtn" class="copy-btn">Copiar Texto Formatado</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
