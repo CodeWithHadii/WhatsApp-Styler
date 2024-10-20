@@ -62,7 +62,7 @@ h3 {
     flex-wrap: wrap;
 }
 
-.format-btn, .copy-btn {
+.format-btn, .copy-btn, .backup-btn, .clear-btn {
     background: linear-gradient(145deg, #25D366, #128C7E);
     color: white;
     border: none;
@@ -75,12 +75,12 @@ h3 {
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.format-btn:hover, .copy-btn:hover {
+.format-btn:hover, .copy-btn:hover, .backup-btn:hover, .clear-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0,0,0,0.15);
 }
 
-.format-btn:active, .copy-btn:active {
+.format-btn:active, .copy-btn:active, .backup-btn:active, .clear-btn:active {
     transform: translateY(1px);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -129,6 +129,24 @@ textarea:focus {
     background: linear-gradient(145deg, #34B7F1, #128C7E);
 }
 
+.backup-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.backup-btn, .clear-btn {
+    flex: 1;
+    margin: 0 5px;
+}
+
+.backup-info, .auto-save-status {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #075E54;
+    text-align: center;
+}
+
 /* Animações */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -139,7 +157,7 @@ textarea:focus {
     animation: fadeIn 0.5s ease-out;
 }
 
-.format-btn, .copy-btn {
+.format-btn, .copy-btn, .backup-btn, .clear-btn {
     animation: fadeIn 0.5s ease-out;
 }
 
@@ -153,7 +171,7 @@ textarea:focus {
         padding: 20px;
     }
     
-    .format-btn, .copy-btn {
+    .format-btn, .copy-btn, .backup-btn, .clear-btn {
         padding: 10px 15px;
         font-size: 14px;
     }

@@ -11,7 +11,6 @@
     <div class="editor-container">
         <h1>WhatsApp Styler</h1>
         <h2>Formatação Elegante para Suas Mensagens</h2>
-        <!-- Resto do conteúdo permanece o mesmo -->
         <div class="toolbar">
             <button id="boldBtn" class="format-btn"><b>B</b></button>
             <button id="italicBtn" class="format-btn"><i>I</i></button>
@@ -26,6 +25,12 @@
             <div id="output"></div>
         </div>
         <button id="copyBtn" class="copy-btn">Copiar Texto Formatado</button>
+        <div class="backup-controls">
+            <button id="backupBtn" class="backup-btn">Criar Backup</button>
+            <button id="clearBtn" class="clear-btn">Limpar Backup e Cache</button>
+        </div>
+        <div id="backupInfo" class="backup-info"></div>
+        <div id="autoSaveStatus" class="auto-save-status"></div>
     </div>
     <script src="script.js"></script>
 </body>
