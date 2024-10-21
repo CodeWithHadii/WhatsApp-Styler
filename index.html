@@ -13,14 +13,17 @@
         <h1>WhatsApp Styler</h1>
         <h2>Formatação Elegante para Suas Mensagens</h2>
         <div class="toolbar">
-            <button id="boldBtn" class="format-btn"><b>B</b></button>
-            <button id="italicBtn" class="format-btn"><i>I</i></button>
-            <button id="strikeBtn" class="format-btn"><s>S</s></button>
-            <button id="monoBtn" class="format-btn"><span class="mono">Mono</span></button>
-            <button id="listBtn" class="format-btn">Lista</button>
-            <button id="numberedListBtn" class="format-btn">Lista Numerada</button>
+            <button id="boldBtn" class="format-btn" title="Negrito (Ctrl+B)"><b>B</b></button>
+            <button id="italicBtn" class="format-btn" title="Itálico (Ctrl+I)"><i>I</i></button>
+            <button id="strikeBtn" class="format-btn" title="Tachado (Ctrl+S)"><s>S</s></button>
+            <button id="monoBtn" class="format-btn" title="Monoespaçado (Ctrl+M)"><span class="mono">Mono</span></button>
+            <button id="listBtn" class="format-btn" title="Lista">Lista</button>
+            <button id="numberedListBtn" class="format-btn" title="Lista Numerada">Lista Numerada</button>
+            <button id="undoBtn" class="format-btn" title="Desfazer (Ctrl+Z)"><i class="fas fa-undo"></i></button>
+            <button id="redoBtn" class="format-btn" title="Refazer (Ctrl+Y)"><i class="fas fa-redo"></i></button>
         </div>
         <textarea id="textInput" placeholder="Digite ou cole seu texto aqui..."></textarea>
+        <div id="charCount" class="char-count">Caracteres: 0 / 1000</div>
         <div class="output-container">
             <h3>Pré-visualização:</h3>
             <div id="output"></div>
@@ -30,12 +33,26 @@
             <button id="backupBtn" class="control-btn">Criar Backup</button>
             <button id="newTextBtn" class="control-btn">Novo Texto</button>
             <button id="clearBtn" class="control-btn">Limpar Tudo</button>
+            <button id="darkModeBtn" class="control-btn">Modo Escuro</button>
         </div>
         <div id="backupInfo" class="backup-info"></div>
         <div id="autoSaveStatus" class="auto-save-status"></div>
         <div class="recent-texts">
             <h3>Textos Recentes:</h3>
             <ul id="recentTextsList"></ul>
+        </div>
+    </div>
+    <div id="tutorial" class="tutorial">
+        <div class="tutorial-content">
+            <h3>Bem-vindo ao WhatsApp Styler!</h3>
+            <p>Aqui estão algumas dicas rápidas:</p>
+            <ul>
+                <li>Use os botões na barra de ferramentas para formatar seu texto.</li>
+                <li>O texto formatado aparecerá na pré-visualização abaixo.</li>
+                <li>Você pode usar atalhos de teclado como Ctrl+B para negrito.</li>
+                <li>Seus textos recentes aparecerão na lista abaixo.</li>
+            </ul>
+            <button id="closeTutorial" class="control-btn">Entendi!</button>
         </div>
     </div>
     <script src="script.js"></script>
