@@ -1,5 +1,6 @@
 let backupFileHandle = null;
 let autoSaveInterval = null;
+let recentTexts = [];
 
 document.getElementById('boldBtn').addEventListener('click', () => applyFormatting('*'));
 document.getElementById('italicBtn').addEventListener('click', () => applyFormatting('_'));
@@ -10,6 +11,7 @@ document.getElementById('numberedListBtn').addEventListener('click', addNumbered
 document.getElementById('copyBtn').addEventListener('click', copyFormattedText);
 document.getElementById('backupBtn').addEventListener('click', createBackup);
 document.getElementById('clearBtn').addEventListener('click', clearBackupAndCache);
+document.getElementById('newTextBtn').addEventListener('click', createNewText);
 document.getElementById('textInput').addEventListener('input', handleTextInputChange);
 
 function applyFormatting(symbol) {
@@ -67,6 +69,80 @@ function copyFormattedText() {
         });
 }
 
+function createNewText() {
+    const currentText = document.getElementById('textInput').value.trim();
+    if (currentText) {
+        addToRecentTexts(currentText);
+    }
+    document.getElementById('textInput').value = '';
+    updateOutput();
+    updateBackupInfo('Novo texto criado. Digite seu conteúdo.');
+}
+
+function addToRecentTexts(text) {
+    const preview = text.substring(0, 30) + (text.length > 30 ? '...' : '');
+    recentTexts.unshift({ preview, fullText: text });
+    if (recentTexts.length > 10) {
+        recentTexts.pop();
+    }
+    updateRecentTextsList();
+    localStorage.setItem('recentTexts', JSON.stringify(recentTexts));
+}
+
+function updateRecentTextsList() {
+    const list = document.getElementById('recentTextsList');
+    list.innerHTML = '';
+    recentTexts.forEach((textObj, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span class="text-preview">${textObj.preview}</span>
+            <button class="delete-btn" aria-label="Deletar texto"><i class="fas fa-times"></i></button>
+        `;
+        li.querySelector('.text-preview').addEventListener('click', () => loadRecentText(index));
+        li.querySelector('.delete-btn').addEventListener('click', (e) => {
+            e.stopPropagation();
+            deleteRecentText(index);
+        });
+        list.appendChild(li);
+    });
+}
+
+function loadRecentText(index) {
+    const textObj = recentTexts[index];
+    if (textObj) {
+        document.getElementById('textInput').value = textObj.fullText;
+        updateOutput();
+        updateBackupInfo('Texto recente carregado.');
+    }
+}
+
+function deleteRecentText(index) {
+    recentTexts.splice(index, 1);
+    updateRecentTextsList();
+    localStorage.setItem('recentTexts', JSON.stringify(recentTexts));
+    updateBackupInfo('Texto recente deletado.');
+}
+
+function handleTextInputChange() {
+    updateOutput();
+    if (backupFileHandle && !autoSaveInterval) {
+        startAutoSave();
+    }
+}
+
+function clearBackupAndCache() {
+    localStorage.removeItem('backupFileName');
+    localStorage.removeItem('backupContent');
+    localStorage.removeItem('recentTexts');
+    backupFileHandle = null;
+    document.getElementById('textInput').value = '';
+    recentTexts = [];
+    updateRecentTextsList();
+    updateOutput();
+    updateBackupInfo('Backup, cache e textos recentes limpos com sucesso!');
+    stopAutoSave();
+}
+
 async function createBackup() {
     const text = document.getElementById('textInput').value;
     
@@ -87,6 +163,7 @@ async function createBackup() {
         await writable.close();
 
         localStorage.setItem('backupContent', text);
+        addToRecentTexts(text);
 
         updateBackupInfo('Backup criado com sucesso!');
         startAutoSave();
@@ -94,16 +171,6 @@ async function createBackup() {
         console.error('Erro ao criar backup:', error);
         updateBackupInfo('Erro ao criar backup. Tente novamente.');
     }
-}
-
-function clearBackupAndCache() {
-    localStorage.removeItem('backupFileName');
-    localStorage.removeItem('backupContent');
-    backupFileHandle = null;
-    document.getElementById('textInput').value = '';
-    updateOutput();
-    updateBackupInfo('Backup e cache limpos com sucesso!');
-    stopAutoSave();
 }
 
 function updateBackupInfo(message) {
@@ -123,6 +190,12 @@ function loadBackup() {
         startAutoSave();
     } else {
         updateBackupInfo('Nenhum backup encontrado. Crie um novo backup para iniciar o salvamento automático.');
+    }
+    
+    const storedRecentTexts = localStorage.getItem('recentTexts');
+    if (storedRecentTexts) {
+        recentTexts = JSON.parse(storedRecentTexts);
+        updateRecentTextsList();
     }
 }
 
@@ -156,13 +229,6 @@ function stopAutoSave() {
         clearInterval(autoSaveInterval);
         autoSaveInterval = null;
         updateAutoSaveStatus('Salvamento automático parado');
-    }
-}
-
-function handleTextInputChange() {
-    updateOutput();
-    if (backupFileHandle && !autoSaveInterval) {
-        startAutoSave();
     }
 }
 

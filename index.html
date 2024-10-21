@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Styler - Formatação Elegante</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -25,12 +26,17 @@
             <div id="output"></div>
         </div>
         <button id="copyBtn" class="copy-btn">Copiar Texto Formatado</button>
-        <div class="backup-controls">
-            <button id="backupBtn" class="backup-btn">Criar Backup</button>
-            <button id="clearBtn" class="clear-btn">Limpar Backup e Cache</button>
+        <div class="control-buttons">
+            <button id="backupBtn" class="control-btn">Criar Backup</button>
+            <button id="newTextBtn" class="control-btn">Novo Texto</button>
+            <button id="clearBtn" class="control-btn">Limpar Tudo</button>
         </div>
         <div id="backupInfo" class="backup-info"></div>
         <div id="autoSaveStatus" class="auto-save-status"></div>
+        <div class="recent-texts">
+            <h3>Textos Recentes:</h3>
+            <ul id="recentTextsList"></ul>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
