@@ -11,12 +11,19 @@ WhatsApp Styler é uma ferramenta web elegante e fácil de usar para formatar su
 - **Pré-visualização em Tempo Real**: Veja como sua mensagem ficará antes de enviá-la.
 - **Design Responsivo**: Funciona perfeitamente em dispositivos móveis e desktops.
 - **Copiar com Um Clique**: Copie seu texto formatado para a área de transferência com facilidade.
+- **Modo Escuro**: Alterne entre modos claro e escuro para uma experiência visual confortável.
+- **Contador de Caracteres**: Monitore o número de caracteres digitados com limite de 1000.
+- **Desfazer/Refazer**: Desfaça ou refaça suas ações com botões ou atalhos de teclado.
+- **Atalhos de Teclado**: Use atalhos como Ctrl+B para negrito, Ctrl+I para itálico, etc.
+- **Tutorial Interativo**: Um guia rápido para novos usuários na primeira visita.
+- **Textos Recentes**: Acesse facilmente os últimos 10 textos editados.
+- **Backup Automático**: Seus textos são salvos automaticamente a cada minuto.
 
 ## 🚀 Como Usar
 
-1. Acesse o [WhatsApp Styler](https://seu-link-aqui.com).
+1. Acesse o [WhatsApp Styler](https://iagolirapasssos.github.io/WhatsApp-Styler/).
 2. Digite ou cole seu texto na área de entrada.
-3. Use os botões de formatação para estilizar seu texto.
+3. Use os botões de formatação ou atalhos de teclado para estilizar seu texto.
 4. Veja a pré-visualização instantânea abaixo.
 5. Clique em "Copiar Texto Formatado" quando estiver satisfeito.
 6. Cole o texto formatado em sua conversa do WhatsApp!
@@ -27,7 +34,7 @@ Para rodar o WhatsApp Styler localmente:
 
 1. Clone o repositório:
    ```
-   git clone https://github.com/seu-usuario/whatsapp-styler.git
+   git clone git@github.com:iagolirapasssos/WhatsApp-Styler.git
    ```
 2. Navegue até o diretório do projeto:
    ```
@@ -40,6 +47,7 @@ Para rodar o WhatsApp Styler localmente:
 - HTML5
 - CSS3
 - JavaScript (ES6+)
+- Font Awesome (para ícones)
 
 ## 🤝 Contribuindo
 
