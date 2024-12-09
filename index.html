@@ -10,51 +10,89 @@
 </head>
 <body>
     <div class="editor-container">
-        <h1>WhatsApp Styler</h1>
-        <h2>Formatação Elegante para Suas Mensagens</h2>
-        <div class="toolbar">
-            <button id="boldBtn" class="format-btn" title="Negrito (Ctrl+B)"><b>B</b></button>
-            <button id="italicBtn" class="format-btn" title="Itálico (Ctrl+I)"><i>I</i></button>
-            <button id="strikeBtn" class="format-btn" title="Tachado (Ctrl+S)"><s>S</s></button>
-            <button id="monoBtn" class="format-btn" title="Monoespaçado (Ctrl+M)"><span class="mono">Mono</span></button>
-            <button id="listBtn" class="format-btn" title="Lista">Lista</button>
-            <button id="numberedListBtn" class="format-btn" title="Lista Numerada">Lista Numerada</button>
-            <button id="undoBtn" class="format-btn" title="Desfazer (Ctrl+Z)"><i class="fas fa-undo"></i></button>
-            <button id="redoBtn" class="format-btn" title="Refazer (Ctrl+Y)"><i class="fas fa-redo"></i></button>
+        <!-- Cabeçalho com Título e Seletor de Idioma -->
+        <div class="header">
+            <div>
+                <h1 data-i18n="title">WhatsApp Styler</h1>
+                <h2 data-i18n="subtitle">Formatação Elegante para Suas Mensagens</h2>
+            </div>
+            <div class="language-selector-container">
+                <select id="language-selector">
+                    <option value="pt-BR">Português</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                </select>
+            </div>
         </div>
-        <textarea id="textInput" placeholder="Digite ou cole seu texto aqui..."></textarea>
+        
+        <!-- Barra de Ferramentas -->
+        <div class="toolbar">
+            <button id="boldBtn" class="format-btn" title="Negrito (Ctrl+B)" data-i18n="bold" title-key="boldTitle"><b>B</b></button>
+            <button id="italicBtn" class="format-btn" title="Itálico (Ctrl+I)" data-i18n="italic" title-key="italicTitle"><i>I</i></button>
+            <button id="strikeBtn" class="format-btn" title="Tachado (Ctrl+S)" data-i18n="strike" title-key="strikeTitle"><s>S</s></button>
+            <button id="monoBtn" class="format-btn" title="Monoespaçado (Ctrl+M)" data-i18n="mono" title-key="monoTitle"><span class="mono">Mono</span></button>
+            <button id="listBtn" class="format-btn" title="Lista" data-i18n="list" title-key="listTitle">Lista</button>
+            <button id="numberedListBtn" class="format-btn" title="Lista Numerada" data-i18n="numberedList" title-key="numberedListTitle">Lista Numerada</button>
+            <button id="undoBtn" class="format-btn" title="Desfazer (Ctrl+Z)" data-i18n="undo" title-key="undoTitle"><i class="fas fa-undo"></i></button>
+            <button id="redoBtn" class="format-btn" title="Refazer (Ctrl+Y)" data-i18n="redo" title-key="redoTitle"><i class="fas fa-redo"></i></button>
+        </div>
+        
+        <!-- Área de Texto -->
+        <textarea id="textInput" placeholder="Digite ou cole seu texto aqui..." data-i18n-placeholder="textareaPlaceholder"></textarea>
+        
+        <!-- Contagem de Caracteres -->
         <div id="charCount" class="char-count">Caracteres: 0 / 1000</div>
+        
+        <!-- Pré-visualização -->
         <div class="output-container">
-            <h3>Pré-visualização:</h3>
+            <h3 data-i18n="preview">Pré-visualização:</h3>
             <div id="output"></div>
         </div>
-        <button id="copyBtn" class="copy-btn">Copiar Texto Formatado</button>
+        
+        <!-- Botão para Copiar Texto Formatado -->
+        <button id="copyBtn" class="copy-btn" data-i18n="copyText">Copiar Texto Formatado</button>
+        
+        <!-- Botões de Controle -->
         <div class="control-buttons">
-            <button id="backupBtn" class="control-btn">Criar Backup</button>
-            <button id="newTextBtn" class="control-btn">Novo Texto</button>
-            <button id="clearBtn" class="control-btn">Limpar Tudo</button>
-            <button id="darkModeBtn" class="control-btn">Modo Escuro</button>
+            <button id="backupBtn" class="control-btn" data-i18n="createBackup">Criar Backup</button>
+            <button id="newTextBtn" class="control-btn" data-i18n="newText">Novo Texto</button>
+            <button id="tutorialBtn" class="control-btn" data-i18n="openTutorial">Tutorial</button>
+            <button id="clearBtn" class="control-btn" data-i18n="clearAll">Limpar Tudo</button>
+            <button id="darkModeBtn" class="control-btn" data-i18n="toggleDarkMode">Modo Escuro</button>
+            <button id="exportBtn" class="control-btn" data-i18n="exportText">Exportar Texto</button>
+            <button id="importBtn" class="control-btn" data-i18n="importText">Importar Texto</button>
         </div>
+        
+        <!-- Informações de Backup e Auto-Save -->
         <div id="backupInfo" class="backup-info"></div>
         <div id="autoSaveStatus" class="auto-save-status"></div>
+        
+        <!-- Textos Recentes -->
         <div class="recent-texts">
-            <h3>Textos Recentes:</h3>
+            <h3 data-i18n="recentTexts">Textos Recentes:</h3>
             <ul id="recentTextsList"></ul>
         </div>
     </div>
+    
+    <!-- Tutorial -->
     <div id="tutorial" class="tutorial">
         <div class="tutorial-content">
-            <h3>Bem-vindo ao WhatsApp Styler!</h3>
-            <p>Aqui estão algumas dicas rápidas:</p>
+            <h3 data-i18n="welcomeTutorial">Bem-vindo ao WhatsApp Styler!</h3>
+            <p data-i18n="tutorialTips">Aqui estão algumas dicas rápidas:</p>
             <ul>
-                <li>Use os botões na barra de ferramentas para formatar seu texto.</li>
-                <li>O texto formatado aparecerá na pré-visualização abaixo.</li>
-                <li>Você pode usar atalhos de teclado como Ctrl+B para negrito.</li>
-                <li>Seus textos recentes aparecerão na lista abaixo.</li>
+                <li data-i18n="tip1">Use os botões na barra de ferramentas para formatar seu texto.</li>
+                <li data-i18n="tip2">O texto formatado aparecerá na pré-visualização abaixo.</li>
+                <li data-i18n="tip3">Você pode usar atalhos de teclado como Ctrl+B para negrito.</li>
+                <li data-i18n="tip4">Seus textos recentes aparecerão na lista abaixo.</li>
             </ul>
-            <button id="closeTutorial" class="control-btn">Entendi!</button>
+            <button id="closeTutorial" class="control-btn" data-i18n="understood">Entendi!</button>
         </div>
     </div>
+    
+    <!-- Input para Importar Texto (Hidden) -->
+    <input type="file" id="importFileInput" accept=".txt" style="display: none;">
+    
     <script src="script.js"></script>
 </body>
 </html>
