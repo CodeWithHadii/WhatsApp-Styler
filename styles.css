@@ -17,14 +17,15 @@ body {
     background: linear-gradient(135deg, #25D366, #128C7E);
     background-attachment: fixed;
     transition: background-color 0.3s ease;
+    position: relative; /* Para posicionar elementos absolutos dentro do body, se necessário */
 }
 
 .editor-container {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
     border-radius: 15px;
     padding: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
     backdrop-filter: blur(10px);
     transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
@@ -34,20 +35,55 @@ body {
     transform: translateY(-5px);
 }
 
+/* Cabeçalho */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Estilos para o seletor de idioma */
+.language-selector-container {
+    /* Mantém o seletor alinhado à direita */
+}
+
+#language-selector {
+    padding: 8px 12px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#language-selector:hover {
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+#language-selector:focus {
+    outline: none;
+    border-color: #25D366;
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.1);
+}
+
+/* Títulos */
 h1 {
-    text-align: center;
+    text-align: left;
     color: #075E54;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 h2 {
-    text-align: center;
+    text-align: left;
     color: #128C7E;
     font-weight: 400;
     font-size: 1.2em;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 h3 {
@@ -56,6 +92,7 @@ h3 {
     margin-bottom: 10px;
 }
 
+/* Barra de Ferramentas */
 .toolbar {
     display: flex;
     justify-content: center;
@@ -134,12 +171,13 @@ textarea:focus {
 .control-buttons {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     margin-top: 20px;
 }
 
 .control-btn {
-    flex: 1;
-    margin: 0 5px;
+    flex: 1 1 30%;
+    margin: 5px;
 }
 
 .backup-info, .auto-save-status {
@@ -211,6 +249,7 @@ textarea:focus {
     font-weight: bold;
 }
 
+/* Tutorial */
 .tutorial {
     position: fixed;
     top: 0;
@@ -222,14 +261,22 @@ textarea:focus {
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    animation: fadeIn 0.5s ease-out;
 }
 
 .tutorial-content {
     background-color: white;
     padding: 20px;
     border-radius: 10px;
-    max-width: 500px;
+    max-width: 600px;
     width: 90%;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
 
 /* Modo Escuro */
@@ -238,7 +285,7 @@ body.dark-mode {
 }
 
 body.dark-mode .editor-container {
-    background-color: rgba(41, 49, 55, 0.9);
+    background-color: rgba(41, 49, 55, 0.95);
     color: #E0E0E0;
 }
 
@@ -271,6 +318,11 @@ body.dark-mode .auto-save-status {
     color: #25D366;
 }
 
+body.dark-mode .tutorial-content {
+    background-color: #2A3942;
+    color: #E0E0E0;
+}
+
 /* Animações */
 @keyframes fadeIn {
     from { opacity: 0; }
@@ -286,6 +338,12 @@ body.dark-mode .auto-save-status {
 }
 
 /* Responsividade */
+@media (max-width: 800px) {
+    .editor-container {
+        padding: 25px;
+    }
+}
+
 @media (max-width: 600px) {
     body {
         padding: 10px;
@@ -298,5 +356,37 @@ body.dark-mode .auto-save-status {
     .format-btn, .copy-btn, .control-btn {
         padding: 10px 15px;
         font-size: 14px;
+    }
+    
+    #language-selector {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .language-selector-container {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    #language-selector {
+        width: 100%;
+    }
+
+    .control-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .control-btn {
+        flex: 1 1 100%;
+    }
+
+    .tutorial-content {
+        max-width: 90%;
     }
 }
